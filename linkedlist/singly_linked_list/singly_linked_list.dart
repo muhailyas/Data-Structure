@@ -71,6 +71,26 @@ class SinglyLinkedList {
     current.next = newNode;
   }
 
+  insertBefore(int data, before) {
+    Node newNode = Node(data);
+    if (head == null) {
+      head = newNode;
+      tail = newNode;
+      return;
+    }
+    if (tail!.data == before) {
+      tail!.next = newNode;
+      tail = newNode;
+      return;
+    }
+    Node? current = head;
+    while (current!.next!.data != data) {
+      current = current.next;
+    }
+    newNode.next = current.next;
+    current.next = newNode;
+  }
+
   display() {
     Node? current = head;
     if (head == null) return 'Linkedlist is empty';
@@ -89,7 +109,7 @@ void main() {
   _singlyLinkedList.insertNode(3);
   _singlyLinkedList.insertNode(4);
   _singlyLinkedList.insertNode(5);
-  _singlyLinkedList.insertAfter(15,5);
+  _singlyLinkedList.insertAfter(15, 5);
   final output = _singlyLinkedList.deleteNode(6);
   print(output);
   _singlyLinkedList.reverse();
